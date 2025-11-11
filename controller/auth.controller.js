@@ -3,10 +3,10 @@ const { hashPassword } = require("../utils/auth.util");
 
 async function authRegister(req, res, next) {
   try {
-    const { email, password, fullName } = req.body;
+    const { email, password, ConfirmPassword, fullName } = req.body;
     const createUserModel = await usserModel.create({
       fullName,
-      password: hashPassword(password),
+      password: hashPassword(password, ConfirmPassword),
       email,
     });
     res.send(createUserModel);
